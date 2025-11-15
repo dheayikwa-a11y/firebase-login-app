@@ -1,0 +1,35 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyA-6fLFyD9YBv6TQ1mE3OLNuGCQeMajm68",
+  authDomain: "login-aman-fba57.firebaseapp.com",
+  projectId: "login-aman-fba57",
+  storageBucket: "login-aman-fba57.firebasestorage.app",
+  messagingSenderId: "866204815571",
+  appId: "1:866204815571:web:a93c7cdb7beaa2a8dc4426",
+  measurementId: "G-9SDKCFFHXX"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+async function register() {
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("password").value;
+
+  try {
+    await firebase.auth().createUserWithEmailAndPassword(email, pass);
+    document.getElementById("result").innerHTML = "✅ Registrasi berhasil";
+  } catch (error) {
+    document.getElementById("result").innerHTML = "❌ " + error.message;
+  }
+}
+
+async function login() {
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("password").value;
+
+  try {
+    await firebase.auth().signInWithEmailAndPassword(email, pass);
+    document.getElementById("result").innerHTML = "✅ Login berhasil";
+  } catch (error) {
+    document.getElementById("result").innerHTML = "❌ " + error.message;
+  }
+}
